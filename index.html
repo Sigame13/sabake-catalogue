@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Catalogue | Éditions Sabaké</title>
+<style>
+  :root {
+    --brown: #4b2e20;
+    --brown-dark: #2f1c14;
+    --gold: #bd9345;
+    --cream: #fbf6ec;
+    --paper: #fffdf8;
+    --muted: #74685d;
+    --line: #e8dcc8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; color: var(--brown-dark); background: var(--cream);
+    font-family: Georgia, "Times New Roman", serif; line-height: 1.55;
+  }
+  .sabake { max-width: 1180px; margin: auto; padding: 26px 20px 40px; }
+  .topline { height: 5px; background: linear-gradient(90deg,var(--brown),var(--gold),var(--brown)); border-radius: 5px; }
+  header { text-align: center; padding: 28px 10px 24px; }
+  .eyebrow { color: #8c6728; text-transform: uppercase; letter-spacing: .18em; font: 700 12px Arial,sans-serif; }
+  h1 { color: var(--brown); font-size: clamp(30px, 5vw, 48px); line-height: 1.12; margin: 10px 0; }
+  .intro { max-width: 690px; margin: 0 auto; color: var(--muted); font-size: 17px; }
+  .ornament { color: var(--gold); letter-spacing: .4em; margin: 14px 0; }
+  .toolbar { display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: center; margin: 18px 0 24px; }
+  .toolbar input, .toolbar select {
+    border: 1px solid #d8c6a8; border-radius: 8px; padding: 12px 14px;
+    background: var(--paper); color: var(--brown-dark); font: 15px Arial,sans-serif;
+  }
+  .toolbar input { flex: 1 1 250px; min-width: 0; }
+  .toolbar select { flex: 0 1 220px; }
+  .grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 22px; }
+  .book { overflow: hidden; border: 1px solid var(--line); border-radius: 12px; background: var(--paper); box-shadow: 0 5px 18px rgba(63,39,24,.07); display: flex; flex-direction: column; }
+  .cover { min-height: 235px; display: flex; align-items: center; justify-content: center; padding: 22px; text-align: center; color: #fff7e8; background: linear-gradient(145deg,#68422c,#3c2419); position: relative; }
+  .cover:after { content: ""; position: absolute; inset: 12px; border: 1px solid rgba(224,190,119,.65); pointer-events: none; }
+  .cover.gold { background: linear-gradient(145deg,#b08a43,#684b23); }
+  .cover.olive { background: linear-gradient(145deg,#5d6041,#30351f); }
+  .cover.blue { background: linear-gradient(145deg,#49606a,#23343c); }
+  .cover-inner { position: relative; z-index: 1; max-width: 230px; }
+  .cover small { display: block; text-transform: uppercase; letter-spacing: .14em; font: 11px Arial,sans-serif; margin-bottom: 16px; }
+  .cover strong { display: block; font-size: 25px; line-height: 1.12; }
+  .cover em { display: block; font-size: 13px; margin-top: 18px; }
+  .book-content { padding: 19px 19px 20px; display: flex; flex-direction: column; flex: 1; }
+  .category { color: #98712f; text-transform: uppercase; letter-spacing: .12em; font: 700 10px Arial,sans-serif; }
+  h2 { font-size: 21px; line-height: 1.25; margin: 8px 0 5px; color: var(--brown); }
+  .author { color: var(--muted); font: 14px Arial,sans-serif; margin: 0 0 12px; }
+  .summary { font-size: 15px; color: #51443a; margin: 0 0 18px; }
+  .actions { margin-top: auto; display: flex; flex-wrap: wrap; gap: 9px; }
+  .btn { display: inline-block; border-radius: 6px; padding: 10px 13px; text-decoration: none; font: 700 12px Arial,sans-serif; }
+  .btn-primary { background: var(--brown); color: white; }
+  .btn-outline { border: 1px solid var(--gold); color: var(--brown); }
+  .notice { margin: 26px 0 0; padding: 15px 17px; border-left: 4px solid var(--gold); background: #f3ead9; color: #655345; font: 13px/1.5 Arial,sans-serif; }
+  footer { text-align: center; color: var(--muted); border-top: 1px solid var(--line); margin-top: 30px; padding-top: 20px; font: 13px Arial,sans-serif; }
+  @media (max-width: 850px) { .grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+  @media (max-width: 560px) { .sabake { padding: 16px 12px 28px; } .grid { grid-template-columns: 1fr; } .cover { min-height: 205px; } .toolbar select { flex: 1 1 100%; } }
+</style>
+</head>
+<body>
+<div class="sabake">
+  <div class="topline"></div>
+  <header>
+    <div class="eyebrow">Maison d'édition · Littératures africaines</div>
+    <h1>Le catalogue des Éditions Sabaké</h1>
+    <div class="ornament">✦ ─ ✦ ─ ✦</div>
+    <p class="intro">Des voix, des imaginaires et des savoirs pour lire l’Afrique dans toute sa richesse. Découvrez nos ouvrages et contactez-nous pour toute demande d’information ou de commande.</p>
+  </header>
+
+  <div class="toolbar" aria-label="Filtres du catalogue">
+    <input id="search" type="search" placeholder="Rechercher un titre, un auteur…" aria-label="Rechercher un livre">
+    <select id="category" aria-label="Filtrer par catégorie">
+      <option value="">Toutes les catégories</option>
+      <option>Roman</option><option>Poésie</option><option>Essai</option><option>Jeunesse</option><option>Culture</option>
+    </select>
+  </div>
+
+  <main class="grid" id="catalogue">
+    <!-- Remplacez chaque fiche-exemple par les informations exactes d'un ouvrage. -->
+    <article class="book" data-category="Roman" data-search="titre du livre nom de l'auteur roman littérature africaine">
+      <div class="cover"><div class="cover-inner"><small>Éditions Sabaké</small><strong>TITRE DU LIVRE</strong><em>Nom de l’auteur</em></div></div>
+      <div class="book-content"><div class="category">Roman</div><h2>Titre du livre</h2><p class="author">Par Nom de l’auteur</p><p class="summary">Insérez ici un résumé bref et vivant de l’ouvrage (environ 40 à 70 mots), qui donne envie de lire sans dévoiler toute l’intrigue.</p><div class="actions"><a class="btn btn-primary" href="mailto:contact@editionsabake.com?subject=Demande%20sur%20un%20livre">Demander ce livre</a><a class="btn btn-outline" href="#contact">Contact</a></div></div>
+    </article>
+    <article class="book" data-category="Poésie" data-search="titre du recueil nom de l'auteur poésie">
+      <div class="cover gold"><div class="cover-inner"><small>Éditions Sabaké</small><strong>TITRE DU RECUEIL</strong><em>Nom de l’auteur</em></div></div>
+      <div class="book-content"><div class="category">Poésie</div><h2>Titre du recueil</h2><p class="author">Par Nom de l’auteur</p><p class="summary">Présentez les thèmes, le ton et l’originalité du recueil en quelques phrases. Ajoutez les informations bibliographiques utiles si elles sont disponibles.</p><div class="actions"><a class="btn btn-primary" href="mailto:contact@editionsabake.com?subject=Demande%20sur%20un%20livre">Demander ce livre</a><a class="btn btn-outline" href="#contact">Contact</a></div></div>
+    </article>
+    <article class="book" data-category="Essai" data-search="titre de l'essai nom de l'auteur essai">
+      <div class="cover olive"><div class="cover-inner"><small>Éditions Sabaké</small><strong>TITRE DE L’ESSAI</strong><em>Nom de l’auteur</em></div></div>
+      <div class="book-content"><div class="category">Essai</div><h2>Titre de l’essai</h2><p class="author">Par Nom de l’auteur</p><p class="summary">Expliquez la question centrale de l’essai, son apport et les lecteurs auxquels il s’adresse. N’ajoutez que des données vérifiées.</p><div class="actions"><a class="btn btn-primary" href="mailto:contact@editionsabake.com?subject=Demande%20sur%20un%20livre">Demander ce livre</a><a class="btn btn-outline" href="#contact">Contact</a></div></div>
+    </article>
+  </main>
+
+  <div class="notice"><strong>À personnaliser avant publication :</strong> les titres, auteurs, résumés, catégories et couvertures ci-dessus sont des exemples de maquette, pas des données bibliographiques réelles. Remplacez-les par les informations exactes de vos ouvrages. Remplacez également l’adresse e-mail d’exemple par votre contact officiel.</div>
+  <footer id="contact">
+    <strong>Éditions Sabaké</strong><br>
+    Pour les commandes, les manuscrits et les partenariats : ajoutez ici votre adresse e-mail, téléphone et liens officiels.
+  </footer>
+</div>
+<script>
+  const search = document.getElementById('search');
+  const category = document.getElementById('category');
+  const books = [...document.querySelectorAll('.book')];
+  function filterBooks() {
+    const q = search.value.trim().toLocaleLowerCase('fr');
+    const c = category.value;
+    books.forEach(book => {
+      const haystack = (book.dataset.search + ' ' + book.innerText).toLocaleLowerCase('fr');
+      book.hidden = !(haystack.includes(q) && (!c || book.dataset.category === c));
+    });
+  }
+  search.addEventListener('input', filterBooks);
+  category.addEventListener('change', filterBooks);
+</script>
+</body>
+</html>
